@@ -1,18 +1,19 @@
 /* eslint-disable no-plusplus */
 export default class Team {
   constructor() {
-    this.counter = 0;
     this.current = 0;
+    this.chars =[];
   }
 
   addChar(char) {
-    this[`char${this.counter++}`] = char;
+    this.chars.push(char);
   }
 
   * [Symbol.iterator]() {
-    const last = 2;
-    while (this.current < last) yield this[`char${this.current++}`];
+    const last = this.chars.length;
+    while (this.current < last) yield this.chars[this.current++];
   }
+  
 
   next() {
     return this[Symbol.iterator]().next();
